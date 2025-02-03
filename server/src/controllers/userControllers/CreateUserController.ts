@@ -1,12 +1,16 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../../db";
 import { User } from "../../entities/users/User";
+import { validatorEmail } from "../../utils/utils";
 
-export async function CreateUserController (req: Request, res: Response){
+export async function CreateUserController (req: Request, res: Response): Promise<Response | any>{
     try {
         const { name, lastname, email, password, phone } = req.body;
         if(!name || !lastname || !email || !phone || !password ){
             return res.status(400).json({error: "Bad request, missing data"})
+        }
+        if(!validatorEmail(email)){
+            return res.status(400).json({error: "formato de correo invalido"})
         }
         const userRepository = AppDataSource.getRepository(User);
         const userBody = await userRepository.findOne({ where: { email } });
