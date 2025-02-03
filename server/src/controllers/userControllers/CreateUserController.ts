@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { AppDataSource } from "../../db";
 import { User } from "../../entities/users/User";
 
-export async function CreateUserController (req: Request, res: Response){
+export async function CreateUserController (req: Request, res: Response) : Promise<Response | any >{
     try {
         const { name, lastname, email, password, phone } = req.body;
         if(!name || !lastname || !email || !phone || !password ){
