@@ -12,7 +12,7 @@ console.log(DB_DATABASE, DB_HOST);
 export const AppDataSource = new DataSource({
     type: "mysql",
     host: DB_HOST,
-    port: DB_PORT,
+    port: DB_PORT ? parseInt(DB_PORT) : 3306,
     username: DB_USERNAME,
     password: DB_PASSWORD,
     database: DB_DATABASE, 
