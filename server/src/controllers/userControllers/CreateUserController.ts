@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../../db";
 import { User } from "../../entities/users/User";
-import { validatePassword, validatorEmail } from "../../utils/utils";
+import { validatorEmail } from "../../utils/utils";
 
 export async function CreateUserController (req: Request, res: Response): Promise<Response | any>{
     try {
@@ -11,9 +11,6 @@ export async function CreateUserController (req: Request, res: Response): Promis
         }
         if(!validatorEmail(email)){
             return res.status(400).json({error: "formato de correo invalido"})
-        }
-        if(!validatePassword(password)){
-            return res.status(400).json({error: "formato de password invalido"})
         }
         const userRepository = AppDataSource.getRepository(User);
         const userBody = await userRepository.findOne({ where: { email } });
