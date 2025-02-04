@@ -25,6 +25,7 @@ export async function CreateUserController (req: Request, res: Response): Promis
             const user = new User(); 
             user.name = name;
             user.last_name = lastname;
+            user.email = email;
             user.password = password;
             user.phone = phone; 
             user.active = true;

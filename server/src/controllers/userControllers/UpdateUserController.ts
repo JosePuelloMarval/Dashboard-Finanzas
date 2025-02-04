@@ -24,7 +24,6 @@ export async function UpdateUserController (req: Request, res: Response): Promis
         if(userBody){
             userBody.name = name;
             userBody.last_name = lastname;
-            userBody.email = email;
             userBody.password = password;
             userBody.phone = phone; 
             userBody.active = true;
